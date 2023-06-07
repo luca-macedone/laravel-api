@@ -6,7 +6,7 @@
     <div class="container">
         @if ($errors->any())
             <div class="alert alert-danger mt-4" role="alert">
-                <strong>{{__('Error:')}}</strong>
+                <strong>{{ __('Error:') }}</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -56,20 +56,36 @@
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('admin.types.show', $type) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-1"
+                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
                                         title="{{ __('Show related projects') }}">
                                         <i class="fa-solid fa-eye"></i>
+                                        {{__('Show')}}
                                     </a>
-                                    <a href="{{ route('admin.types.edit', $type) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-1"
+                                    {{-- <a href="{{ route('admin.types.edit', $type) }}"
+                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
                                         title="{{ __('Edit') }}">
                                         <i class="fa-solid fa-pencil"></i>
-                                    </a>
+                                    </a> --}}
+                                    <form action="{{ route('admin.types.update', $type) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="input-group">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                name="name" id="name"
+                                                value="{{ old('name'), $type->name }}">
+                                            <button type="submit" class="btn btn-outline-dark">
+                                                <i class="fa-solid fa-pencil me-1"></i>
+                                                {{ __('Edit') }}
+                                            </button>
+                                        </div>
+                                    </form>
+
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-1"
+                                    <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 px-4"
                                         data-bs-toggle="modal" data-bs-target="{{ '#modal' . $type->id }}"
-                                        title="{{ __('Delete') }}">
+                                        title="{{ __('Delete type') }}">
                                         <i class="fa-solid fa-trash"></i>
+                                        {{__('Delete')}}
                                     </button>
                                     <div class="modal fade" id="{{ 'modal' . $type->id }}" tabindex="-1"
                                         data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
@@ -79,7 +95,8 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-danger"
-                                                        id="{{ 'modalTitle' . $type->id }}">{{ __('Danger Zone') }}
+                                                        id="{{ 'modalTitle' . $type->id }}">
+                                                        {{ __('Danger Zone') }}
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
@@ -91,7 +108,8 @@
                                                 <div class="modal-footer d-flex justify-content-between">
                                                     <button type="button" class="btn btn-outline-dark"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                                    <form action="{{ route('admin.types.destroy', $type) }}" method="post">
+                                                    <form action="{{ route('admin.types.destroy', $type) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger">

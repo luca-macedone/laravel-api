@@ -42,7 +42,7 @@ class TypeController extends Controller
         $val_data = $request->validated();
         $val_data['slug'] = Type::generateSlug($val_data['name']);
         Type::create($val_data);
-        return to_route('admin.types.index');
+        return to_route('admin.types.index')->with('message', 'Type created with success');
     }
 
     /**
@@ -76,7 +76,11 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $val_data = $request->validated();
+        $val_data['slug'] = Type::generateSlug($val_data['name']);
+
+        $type->update($val_data);
+        return to_route('admin.types.index')->with('message', 'Type updated with success');
     }
 
     /**
