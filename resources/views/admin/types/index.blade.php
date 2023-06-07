@@ -6,7 +6,7 @@
     <div class="container">
         @if ($errors->any())
             <div class="alert alert-danger mt-4" role="alert">
-                <strong>Error:</strong>
+                <strong>{{__('Error:')}}</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -57,7 +57,7 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('admin.types.show', $type) }}"
                                         class="btn btn-outline-dark d-flex align-items-center gap-1"
-                                        title="{{ __('View') }}">
+                                        title="{{ __('Show related projects') }}">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     <a href="{{ route('admin.types.edit', $type) }}"
@@ -91,8 +91,7 @@
                                                 <div class="modal-footer d-flex justify-content-between">
                                                     <button type="button" class="btn btn-outline-dark"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                                    <form action="{{ route('admin.types.destroy', $type) }}"
-                                                        method="post">
+                                                    <form action="{{ route('admin.types.destroy', $type) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger">
