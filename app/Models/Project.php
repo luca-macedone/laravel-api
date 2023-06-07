@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Type;
 use Illuminate\Support\Str;
 
 class Project extends Model
@@ -14,5 +15,9 @@ class Project extends Model
 
     public static function generateSlug($value){
         return Str::slug($value, '-');
+    }
+
+    public function type() {
+        return $this->belongsTo(Type::class);
     }
 }
