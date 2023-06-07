@@ -1,17 +1,36 @@
 @extends('layouts.admin.dashboard')
 
-@section('page_title', 'Projects')
+@section('page_title', 'Types')
 
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger mt-4" role="alert">
+                <strong>Error:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
             <h2 class="fs-4 text-secondary my-4">
-                {{ __('Projects') }}
+                {{ __('Types') }}
             </h2>
-            <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-dark" role="button">
-                <i class="fa-solid fa-plus me-1"></i>
-                {{ __('New Project') }}
-            </a>
+            <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
+                <form action="{{ route('admin.types.store') }}" method="post">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            id="name" placeholder="WebOps" value="{{ old('name') }}">
+                        <button type="submit" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-plus me-1"></i>
+                            {{ __('New Type') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
         @if (session('message'))
             <div class="alert alert-info" role="alert">
@@ -23,10 +42,8 @@
                 <thead class="">
                     <tr>
                         <th>{{ __('ID') }}</th>
-                        {{-- <th>{{ __('Year') }}</th> --}}
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Slug') }}</th>
-                        {{-- <th>{{ __('Website URL') }}</th> --}}
                         <th>{{ __('Actions') }}</th>
                     </tr>
                 </thead>
@@ -34,10 +51,8 @@
                     @forelse ($types as $type)
                         <tr class="">
                             <td scope="row">{{ $type->id }}</td>
-                            {{-- <td>{{ $type->year_of_development }}</td> --}}
                             <td>{{ $type->name }}</td>
                             <td>{{ $type->slug }}</td>
-                            {{-- <td>{{ $type->website_url }}</td> --}}
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('admin.types.show', $type) }}"
@@ -70,8 +85,8 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div>{{ __("This operation is irreversible.") }}</div>
-                                                    <div class="fw-semibold">{{ __("Are you sure?") }}</div>
+                                                    <div>{{ __('This operation is irreversible.') }}</div>
+                                                    <div class="fw-semibold">{{ __('Are you sure?') }}</div>
                                                 </div>
                                                 <div class="modal-footer d-flex justify-content-between">
                                                     <button type="button" class="btn btn-outline-dark"
@@ -97,7 +112,6 @@
 
                         <tr class="">
                             <td>{{ __('Nothing here yet.') }}</td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

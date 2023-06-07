@@ -39,7 +39,10 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $val_data['slug'] = Type::generateSlug($val_data['name']);
+        Type::create($val_data);
+        return to_route('admin.types.index');
     }
 
     /**

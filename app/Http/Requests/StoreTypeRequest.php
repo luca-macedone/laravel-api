@@ -25,7 +25,7 @@ class StoreTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable', Rule::unique('types', 'name')->ignore($this->type)],
+            'name' => [Rule::unique('types', 'name')->ignore($this->type), 'nullable', 'required'],
             'slug' => ['nullable'],
         ];
     }
