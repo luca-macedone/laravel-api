@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -30,6 +31,7 @@ class UpdateProjectRequest extends FormRequest
             'year_of_development' => 'nullable',
             'repository_url' => 'nullable',
             'website_url' => 'nullable',
+            'type_id' => 'nullable',
         ];
     }
 }

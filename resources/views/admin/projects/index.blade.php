@@ -25,6 +25,7 @@
                         <th>{{ __('ID') }}</th>
                         <th>{{ __('Year') }}</th>
                         <th>{{ __('Title') }}</th>
+                        <th>{{ __('Type') }}</th>
                         <th>{{ __('Repository URL') }}</th>
                         <th>{{ __('Website URL') }}</th>
                         <th>{{ __('Actions') }}</th>
@@ -36,6 +37,7 @@
                             <td scope="row">{{ $project->id }}</td>
                             <td>{{ $project->year_of_development }}</td>
                             <td>{{ $project->title }}</td>
+                            <td>{{ $project->type?->name }}</td>
                             <td>{{ $project->repository_url }}</td>
                             <td>{{ $project->website_url }}</td>
                             <td>

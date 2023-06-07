@@ -18,7 +18,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.projects.update', $project->id) }}" method="post">
+        <form action="{{ route('admin.projects.update', $project) }}" method="post">
             @csrf
             @method('PUT')
             {{-- title --}}
@@ -28,6 +28,18 @@
                     aria-describedby="titleHelpId" placeholder="Type the title here"
                     value="{{ old('title', $project->title) }}">
                 <small id="titleHelpId" class="form-text text-muted">{{ __('Required') }}</small>
+            </div>
+            {{-- type --}}
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Type</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option>Select one type</option>
+                    @forelse ($types as $type)
+                    <option value="{{ old('type_id', $type->id) }}">{{$type->name}}</option>
+                    @empty     
+                    <option value="">{{__('Nothing here yet')}}</option>
+                    @endforelse
+                </select>
             </div>
             {{-- image --}}
             <div class="mb-3">

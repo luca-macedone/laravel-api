@@ -55,8 +55,8 @@
                         alt="{{ $project->title }}">
                     <div class="card-body d-flex flex-column gap-3">
                         <div class="d-flex align-items-start"><strong class="me-3">ID: </strong>{{ $project->id }}</div>
-                        <div class="d-flex align-items-start"><strong class="me-3">Title: </strong>{{ $project->title }}
-                        </div>
+                        <div class="d-flex align-items-start"><strong class="me-3">Title: </strong>{{ $project->title }}</div>
+                        <div class="d-flex align-items-start"><strong class="me-3">Type: </strong>{{ $project->type?->name }}</div>
                         <div class="d-flex align-items-start"><strong class="me-3">Year of development:
                             </strong>{{ $project->year_of_development }}</div>
                         <div class="d-flex align-items-start"><strong class="me-3">Website:

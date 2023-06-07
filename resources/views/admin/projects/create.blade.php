@@ -27,6 +27,18 @@
                     aria-describedby="titleHelpId" placeholder="Type the title here">
                 <small id="titleHelpId" class="form-text text-muted">{{ __('Required') }}</small>
             </div>
+            {{-- type --}}
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Type</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option>Select one type</option>
+                    @forelse ($types as $type)
+                    <option value="{{ $type->id }}">{{$type->name}}</option>
+                    @empty     
+                    <option value="">{{__('Nothing here yet')}}</option>
+                    @endforelse
+                </select>
+            </div>
             {{-- image --}}
             <div class="mb-3">
                 <label for="image" class="form-label">{{ __('Image') }}</label>
@@ -48,7 +60,7 @@
                 <small id="yearHelpId" class="form-text text-muted">{{ __('Set the year of development') }}</small>
             </div>
             <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-dark" role="button">
-				<i class="fa-solid fa-arrow-left me-1"></i>
+                <i class="fa-solid fa-arrow-left me-1"></i>
                 {{ __('Back') }}
             </a>
             <button type="reset" class="btn btn-outline-secondary">
