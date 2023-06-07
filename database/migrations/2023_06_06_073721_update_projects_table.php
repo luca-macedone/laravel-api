@@ -28,9 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['repository_url', 'website_url']);
-            $table->dropColumn(['website_url', 'website_url']);
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropColumn('repository_url');
+            $table->dropColumn('website_url');
         });
     }
 };
