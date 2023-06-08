@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Tecnology;
 
 class TecnologySeeder extends Seeder
 {
@@ -17,9 +18,9 @@ class TecnologySeeder extends Seeder
         $tecnologies = ['Vue', 'Laravel 9.x', 'Bootstrap', 'Sass'];
 
         foreach($tecnologies as $tecnolgy){
-            $newTecnology = new Type();
+            $newTecnology = new Tecnology();
             $newTecnology->name = $tecnolgy;
-            $newTecnology->slug = Type::generateSlug($newTecnology->name);
+            $newTecnology->slug = Tecnology::generateSlug($newTecnology->name);
             $newTecnology->save();
         }
     }
