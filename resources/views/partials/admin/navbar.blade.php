@@ -24,6 +24,10 @@
                     <a class="nav-link {{ Route::currentRouteName() === 'admin.types.index' ? 'active' : '' }}"
                         href="{{ route('admin.types.index') }}">{{ __('Types') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Route::currentRouteName() === 'admin.tecnologies.index' ? 'active' : '' }}"
+                        href="{{ route('admin.tecnologies.index') }}">{{ __('Tecnologies') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

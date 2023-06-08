@@ -55,7 +55,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <a class="text-decoration-none" href="{{ route('admin.projects.index') }}">
+                <a class="text-decoration-none" href="{{ route('admin.tecnologies.index') }}">
                     <div class="card text-start rounded-0 border-dark h-100">
                         <div class="card-header border-0 bg-light d-flex align-items-center justify-content-center py-5 gap-3">
                             <i class="fa-brands fa-vuejs fs-1"></i>
