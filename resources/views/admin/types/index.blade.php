@@ -16,7 +16,7 @@
         @endif
         <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
             <h2 class="fs-4 text-secondary my-4">
-                {{ __('Types') }}
+                {{ __('Types List') }}
             </h2>
             <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
                 <form action="{{ route('admin.types.store') }}" method="post">
@@ -38,34 +38,25 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-hover	table-white align-middle">
+            <table class="table table-hover	table-light align-middle">
                 <thead class="">
                     <tr>
-                        <th>{{ __('ID') }}</th>
-                        <th>{{ __('Name') }}</th>
-                        <th>{{ __('Slug') }}</th>
-                        <th>{{ __('Actions') }}</th>
+                        <th class="">{{ __('ID') }}</th>
+                        <th class="">{{ __('Name') }}</th>
+                        <th class="">{{ __('Slug') }}</th>
+                        <th class="text-center">{{ __('Linked Projects') }}</th>
+                        <th class="text-center">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     @forelse ($types as $type)
                         <tr class="">
-                            <td scope="row">{{ $type->id }}</td>
-                            <td>{{ $type->name }}</td>
-                            <td>{{ $type->slug }}</td>
-                            <td>
+                            <td class="ms-w-5" scope="row">{{ $type->id }}</td>
+                            <td class="ms-overflow-x-hidden ms-w-20">{{ $type->name }}</td>
+                            <td class="ms-overflow-x-hidden">{{ $type->slug }}</td>
+                            <td class="text-center">{{ $type->projects->count() }}</td>
+                            <td class="">
                                 <div class="d-flex align-items-center gap-2">
-                                    <a href="{{ route('admin.types.show', $type) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
-                                        title="{{ __('Show related projects') }}">
-                                        <i class="fa-solid fa-eye"></i>
-                                        {{__('Show')}}
-                                    </a>
-                                    {{-- <a href="{{ route('admin.types.edit', $type) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
-                                        title="{{ __('Edit') }}">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a> --}}
                                     <form action="{{ route('admin.types.update', $type) }}" method="post">
                                         @csrf
                                         @method('PUT')
@@ -79,7 +70,12 @@
                                             </button>
                                         </div>
                                     </form>
-
+                                    <a href="{{ route('admin.types.show', $type) }}"
+                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
+                                        title="{{ __('Show related projects') }}">
+                                        <i class="fa-solid fa-eye"></i>
+                                        {{__('Show')}}
+                                    </a>
                                     <!-- Modal trigger button -->
                                     <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 px-4"
                                         data-bs-toggle="modal" data-bs-target="{{ '#modal' . $type->id }}"

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
             <h2 class="fs-4 text-secondary my-4">
-                {{ __('Projects') }}
+                {{ __('Projects List') }}
             </h2>
             <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-dark" role="button">
                 <i class="fa-solid fa-plus me-1"></i>
@@ -19,7 +19,7 @@
             </div>
         @endif
         <div class="table-responsive">
-            <table class="table table-hover	table-white align-middle">
+            <table class="table table-hover	table-light align-middle">
                 <thead class="">
                     <tr>
                         <th>{{ __('ID') }}</th>
