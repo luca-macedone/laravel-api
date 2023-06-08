@@ -35,11 +35,28 @@
                 <select class="form-select" name="type_id" id="type_id">
                     <option>Select one type</option>
                     @forelse ($types as $type)
-                    <option value="{{ old('type_id', $type->id) }}">{{$type->name}}</option>
+                    <option value="{{ $type->id }}" {{ $type->id  == old('type_id', $project->type->id) ? 'selected' : '' }}>{{$type->name}}</option>
                     @empty     
                     <option value="">{{__('Nothing here yet')}}</option>
                     @endforelse
                 </select>
+            </div>
+            {{-- tecnologies --}}
+            <p class="mb-2">Tecnologies</p>
+            <div class="d-flex align-items-center gap-3 mb-3">
+                @forelse ($tecnologies as $tecnology)
+                    <div class="form-check @error('tecnologies') is-invalid @enderror">
+                        <label class="form-check-label">
+                            @if($errors->any())
+                            <input class="form-check-input" type="checkbox" name="tecnologies[]" value="{{ $tecnology->id }}" {{ in_array($tecnology->id, old('tecnologies', [])) ? 'checked' : '' }}>
+                            @else
+                            <input class="form-check-input" type="checkbox" name="tecnologies[]" value="{{ $tecnology->id }}" {{ $project->tecnologies->contains($tecnology) ? 'checked' : '' }}>
+                            @endif
+                            {{ $tecnology->name }}
+                        </label>
+                    </div>
+                @empty
+                @endforelse
             </div>
             {{-- image --}}
             <div class="mb-3">

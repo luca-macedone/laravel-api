@@ -26,7 +26,7 @@
                             id="name" placeholder="Vue 9.x" value="{{ old('name') }}">
                         <button type="submit" class="btn btn-outline-dark">
                             <i class="fa-solid fa-plus me-1"></i>
-                            {{ __('New Type') }}
+                            {{ __('New Tecnology') }}
                         </button>
                     </div>
                 </form>
@@ -125,6 +125,7 @@
 
                         <tr class="">
                             <td>{{ __('Nothing here yet.') }}</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

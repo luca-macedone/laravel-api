@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Tecnology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -30,7 +31,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create', compact('types', 'tecnologies'));
     }
 
     /**
@@ -44,7 +46,12 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $val_data['slug'] = Project::generateSlug($val_data['title']); 
         // dd($val_data);
-        Project::create($val_data);
+        $newProject = Project::create($val_data);
+
+        if($request->has('tecnologies')){
+            $newProject->tecnologies()>attach($request->tecnologies);
+        }
+
         return to_route('admin.projects.index')->with('message', "Project: '" . $val_data['title'] . "' added with success");
     }
 
@@ -71,7 +78,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact(['project', 'types']));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.edit', compact(['project', 'types', 'tecnologies']));
     }
 
     /**
@@ -88,6 +96,11 @@ class ProjectController extends Controller
         $val_data['slug'] = Project::generateSlug($val_data['title']); 
 
         $project->update($val_data);
+
+        if($request->has('tecnologies')){
+            $project->tecnologies()->sync($request->tecnologies);
+        }
+
         return to_route('admin.projects.index')->with('message', "Project: '" . $val_data['title'] . "' edited with success");
     }
 
