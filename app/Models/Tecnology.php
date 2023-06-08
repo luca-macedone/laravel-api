@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Tecnology extends Model
 {
     use HasFactory;
 
-    private $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug'];
 
     public static function generateSlug($value){
         return Str::slug($value, '-');
