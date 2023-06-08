@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreTecnologyRequest;
 use App\Http\Requests\UpdateTecnologyRequest;
+use Illuminate\Http\Request;
 use App\Models\Tecnology;
 use App\Models\Project;
 
