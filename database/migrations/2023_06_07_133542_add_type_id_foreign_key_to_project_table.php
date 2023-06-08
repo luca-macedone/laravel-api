@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->after('website_url', function($table){
-                $table->foreignId('type_id')->nullable()->constrained();
+                $table->foreignId('type_id')->nullable()->constrained()->onDelete('set null');
             });
         });
     }
