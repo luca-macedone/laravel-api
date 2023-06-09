@@ -18,7 +18,7 @@
                             <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-light px-3"
                                 role="button">
                                 <i class="fa-solid fa-eye me-1"></i>
-                                {{ __('Watch in projects') }}
+                                {{ __('More details') }}
                             </a>
                         </div>
                         <div class="card-body">
@@ -38,17 +38,18 @@
                                         <strong class="me-3">Type:</strong>
                                         {{ $project->type?->name }}
                                     </div>
+                                    @if ($project->technologies != null)
+                                        <div class="d-flex align-items-start"><strong class="me-3">Technologies: </strong>
+                                            <div class="d-flex align-items-center justify-content-end w-100 gap-3">
+                                                @foreach ($project->technologies as $technology)
+                                                    <div>{{ $technology->name }}</div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="d-flex justify-content-between align-items-start w-100">
                                         <strong class="me-3">Year of development:</strong>
                                         {{ $project->year_of_development }}
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-start w-100 text-nowrap overflow-hidden">
-                                        <strong class="me-3">Website:</strong>
-                                        {{ $project->website_url }}
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-start w-100 text-nowrap overflow-hidden">
-                                        <strong class="me-3">Repository:</strong>
-                                        {{ $project->repository_url }}
                                     </div>
                                 </div>
                             </div>

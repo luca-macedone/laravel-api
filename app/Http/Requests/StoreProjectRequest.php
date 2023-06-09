@@ -31,6 +31,7 @@ class StoreProjectRequest extends FormRequest
             'year_of_development' => 'nullable',
             'repository_url' => 'nullable',
             'website_url' => 'nullable',
+            'technologies' => 'exists:technologies,id',
             'type_id' => ['exists:types,id','nullable'],
         ];
     }

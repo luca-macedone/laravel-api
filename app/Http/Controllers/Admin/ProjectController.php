@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use App\Models\Tecnology;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -31,8 +31,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        $tecnologies = Tecnology::all();
-        return view('admin.projects.create', compact('types', 'tecnologies'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -46,10 +46,11 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $val_data['slug'] = Project::generateSlug($val_data['title']); 
         // dd($val_data);
+        // dd($request->technologies);
         $newProject = Project::create($val_data);
 
-        if($request->has('tecnologies')){
-            $newProject->tecnologies()>attach($request->tecnologies);
+        if($request->has('technologies')){
+            $newProject->technologies()->attach($request->technologies);
         }
 
         return to_route('admin.projects.index')->with('message', "Project: '" . $val_data['title'] . "' added with success");
@@ -78,8 +79,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        $tecnologies = Tecnology::all();
-        return view('admin.projects.edit', compact(['project', 'types', 'tecnologies']));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact(['project', 'types', 'technologies']));
     }
 
     /**
@@ -97,8 +98,8 @@ class ProjectController extends Controller
 
         $project->update($val_data);
 
-        if($request->has('tecnologies')){
-            $project->tecnologies()->sync($request->tecnologies);
+        if($request->has('technologies')){
+            $project->technologies()->sync($request->technologies);
         }
 
         return to_route('admin.projects.index')->with('message', "Project: '" . $val_data['title'] . "' edited with success");

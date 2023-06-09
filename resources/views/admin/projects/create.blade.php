@@ -39,14 +39,14 @@
                     @endforelse
                 </select>
             </div>
-            {{-- tecnologies --}}
-            <p class="mb-2">Tecnologies</p>
+            {{-- technologies --}}
+            <p class="mb-2">Technologies</p>
             <div class="d-flex align-items-center gap-3 mb-3">
-                @forelse ($tecnologies as $tecnology)
-                    <div class="form-check @error('tecnologies') is-invalid @enderror">
+                @forelse ($technologies as $technology)
+                    <div class="form-check @error('technologies') is-invalid @enderror">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="tecnologies[]" value="{{ $tecnology->id }}" {{ in_array($tecnology->id, old('tecnologies', [])) ? 'checked' : '' }}>
-                            {{ $tecnology->name }}
+                            <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                            {{ $technology->name }}
                         </label>
                     </div>
                 @empty
@@ -58,6 +58,20 @@
                 <input type="text" class="form-control @error('image') is-invalid @enderror" name="image"
                     id="image" aria-describedby="imageHelpId" placeholder="http:://lorem.picsum/random">
                 <small id="imageHelpId" class="form-text text-muted">{{ __('Place the image URL here') }}</small>
+            </div>
+            {{-- repository_url --}}
+            <div class="mb-3">
+                <label for="repository_url" class="form-label">{{ __('Repository URL') }}</label>
+                <input type="text" class="form-control @error('repository_url') is-invalid @enderror" name="repository_url" id="repository_url"
+                    aria-describedby="repositoryHelpId" placeholder="Type the URL here">
+                {{-- <small id="repositoryHelpId" class="form-text text-muted">{{ __('Required') }}</small> --}}
+            </div>
+            {{-- website_url --}}
+            <div class="mb-3">
+                <label for="website_url" class="form-label">{{ __('Website URL') }}</label>
+                <input type="text" class="form-control @error('website_url') is-invalid @enderror" name="website_url" id="website_url"
+                    aria-describedby="websiteHelpId" placeholder="Type the URL here">
+                {{-- <small id="websiteHelpId" class="form-text text-muted">{{ __('Required') }}</small> --}}
             </div>
             {{-- description --}}
             <div class="mb-3">

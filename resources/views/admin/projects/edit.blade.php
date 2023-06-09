@@ -30,29 +30,31 @@
                 <small id="titleHelpId" class="form-text text-muted">{{ __('Required') }}</small>
             </div>
             {{-- type --}}
+            @if($types)
             <div class="mb-3">
                 <label for="type_id" class="form-label">Type</label>
                 <select class="form-select" name="type_id" id="type_id">
                     <option>Select one type</option>
                     @forelse ($types as $type)
-                    <option value="{{ $type->id }}" {{ $type->id  == old('type_id', $project->type->id) ? 'selected' : '' }}>{{$type->name}}</option>
+                    <option value="{{ $type->id }}" {{ $type->id  == old('type_id', $project->type?->id) ? 'selected' : '' }}>{{$type->name}}</option>
                     @empty     
                     <option value="">{{__('Nothing here yet')}}</option>
                     @endforelse
                 </select>
             </div>
-            {{-- tecnologies --}}
-            <p class="mb-2">Tecnologies</p>
+            @endif
+            {{-- technologies --}}
+            <p class="mb-2">Technologies</p>
             <div class="d-flex align-items-center gap-3 mb-3">
-                @forelse ($tecnologies as $tecnology)
-                    <div class="form-check @error('tecnologies') is-invalid @enderror">
+                @forelse ($technologies as $technology)
+                    <div class="form-check @error('technologies') is-invalid @enderror">
                         <label class="form-check-label">
                             @if($errors->any())
-                            <input class="form-check-input" type="checkbox" name="tecnologies[]" value="{{ $tecnology->id }}" {{ in_array($tecnology->id, old('tecnologies', [])) ? 'checked' : '' }}>
+                            <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
                             @else
-                            <input class="form-check-input" type="checkbox" name="tecnologies[]" value="{{ $tecnology->id }}" {{ $project->tecnologies->contains($tecnology) ? 'checked' : '' }}>
+                            <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
                             @endif
-                            {{ $tecnology->name }}
+                            {{ $technology->name }}
                         </label>
                     </div>
                 @empty

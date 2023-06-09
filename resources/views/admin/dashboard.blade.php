@@ -7,7 +7,7 @@
         <h1 class="fs-1 text-dark my-4">
             {{ __('Dashboard') }}
         </h1>
-        <div class="row justify-content-start">
+        <div class="row justify-content-start g-4">
             <div class="col-12">
                 <div class="alert alert-light text-dark rounded-0 border-dark p-5" role="alert">
                     @if (session('status'))
@@ -55,7 +55,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <a class="text-decoration-none" href="{{ route('admin.tecnologies.index') }}">
+                <a class="text-decoration-none" href="{{ route('admin.technologies.index') }}">
                     <div class="card text-start rounded-0 border-dark h-100">
                         <div class="card-header border-0 bg-light d-flex align-items-center justify-content-center py-5 gap-3">
                             <i class="fa-brands fa-vuejs fs-1"></i>
@@ -63,7 +63,7 @@
                             <i class="fa-brands fa-laravel fs-1"></i>
                         </div>
                         <div class="card-body bg-light">
-                            <h4 class="card-title text-center">Tecnologies</h4>
+                            <h4 class="card-title text-center">Technologies</h4>
                             
                         </div>
                     </div>

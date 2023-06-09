@@ -29,7 +29,16 @@
         </header>
 
         <main class="">
-            @yield('content')
+            <div class="container-fluid">
+                <div class="row">
+                    <aside class="col-12 col-md-2 border-end border-dark px-0">
+                        @include('partials.admin.sidebar')
+                    </aside>
+                    <main class="col-12 col-md-10 py-5">
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
         </main>
     </div>
 </body>

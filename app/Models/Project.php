@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Technology;
 
 class Project extends Model
 {
@@ -22,7 +23,7 @@ class Project extends Model
         return $this->belongsTo(Type::class);
     }
 
-    public function tecnologies() {
-        return $this->belongsToMany('App\Models\Tecnology');
+    public function technologies() {
+        return $this->belongsToMany(Technology::class);
     }
 }
