@@ -103,12 +103,13 @@ class ProjectController extends Controller
         // dd($request);
         $val_data = $request->validated();
         $val_data['slug'] = Project::generateSlug($val_data['title']);
+        // dd($val_data);
 
         if ($request->hasFile('image')) {
             if ($project->image) {
                 Storage::delete($project->image);
             }
-            
+
             $img_path = Storage::put('uploads', $request->image);
             $val_data['image'] = $img_path;
         }
