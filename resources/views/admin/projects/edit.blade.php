@@ -81,14 +81,14 @@
             {{-- repository_url --}}
             <div class="mb-3">
                 <label for="repository_url" class="form-label">{{ __('Repository URL') }}</label>
-                <input type="text" class="form-control rounded-0 @error('repository_url') is-invalid @enderror" name="repository_url" id="repository_url"
+                <input value="{{ old('repository_url', $project->repository_url) }}" type="text" class="form-control rounded-0 @error('repository_url') is-invalid @enderror" name="repository_url" id="repository_url"
                     aria-describedby="repositoryHelpId" placeholder="Type the URL here">
                 {{-- <small id="repositoryHelpId" class="form-text text-muted">{{ __('Required') }}</small> --}}
             </div>
             {{-- website_url --}}
             <div class="mb-3">
                 <label for="website_url" class="form-label">{{ __('Website URL') }}</label>
-                <input type="text" class="form-control rounded-0 @error('website_url') is-invalid @enderror" name="website_url" id="website_url"
+                <input value="{{ old('website_url', $project->website_url) }}" type="text" class="form-control rounded-0 @error('website_url') is-invalid @enderror" name="website_url" id="website_url"
                     aria-describedby="websiteHelpId" placeholder="Type the URL here">
                 {{-- <small id="websiteHelpId" class="form-text text-muted">{{ __('Required') }}</small> --}}
             </div>
