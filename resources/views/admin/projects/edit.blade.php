@@ -24,7 +24,7 @@
             {{-- title --}}
             <div class="mb-3">
                 <label for="title" class="form-label">{{ __('Title') }}</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
+                <input type="text" class="form-control rounded-0 @error('title') is-invalid @enderror" name="title" id="title"
                     aria-describedby="titleHelpId" placeholder="Type the title here"
                     value="{{ old('title', $project->title) }}">
                 <small id="titleHelpId" class="form-text text-muted">{{ __('Required') }}</small>
@@ -33,7 +33,7 @@
             @if($types)
             <div class="mb-3">
                 <label for="type_id" class="form-label">Type</label>
-                <select class="form-select" name="type_id" id="type_id">
+                <select class="form-select rounded-0" name="type_id" id="type_id">
                     <option>Select one type</option>
                     @forelse ($types as $type)
                     <option value="{{ $type->id }}" {{ $type->id  == old('type_id', $project->type?->id) ? 'selected' : '' }}>{{$type->name}}</option>
@@ -52,7 +52,7 @@
                             @if($errors->any())
                             <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
                             @else
-                            <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                            <input class="form-check-input rounded-0" type="checkbox" name="technologies[]" value="{{ $technology->id }}" {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
                             @endif
                             {{ $technology->name }}
                         </label>
@@ -62,34 +62,44 @@
             </div>
             {{-- image --}}
             <div class="mb-3">
-                <label for="image" class="form-label">{{ __('Image') }}</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" name="image"
-                    id="image" aria-describedby="imageHelpId" placeholder="http:://lorem.picsum/random"
-                    value="{{ old('image', $project->image) }}">
-                <small id="imageHelpId" class="form-text text-muted">{{ __('Place the image URL here') }}</small>
+                <div class="d-flex align-items-center justify-content-between gap-3">
+                    <div class="w-25 overflow-hidden my-3">
+                        @if($project->image)
+                        <img src="{{ asset("storage/$project->image") }}" class="img-fluid object-fit-cover"   alt="{{ $project->slung . " cover image" }}"/>
+                        @else
+                        <div class="border px-3 py-5 text-center">{{ __('No image')}}</div>
+                        @endif
+                    </div>
+                    <div class="w-75">
+                        <label for="image" class="form-label">{{ __('Image') }}</label>
+                        <input type="file" class="form-control rounded-0 @error('image') is-invalid @enderror" name="image"
+                            id="image" aria-describedby="imageHelpId">
+                        <small id="imageHelpId" class="form-text text-muted">{{ __('Please select an image from your device') }}</small>
+                    </div>
+                </div>
             </div>
             {{-- description --}}
             <div class="mb-3">
                 <label for="description" class="form-label">{{ __('Description') }}</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
+                <textarea class="form-control rounded-0 @error('description') is-invalid @enderror" name="description" id="description"
                     rows="5">{{ old('description', $project->description) }}</textarea>
             </div>
             {{-- year --}}
             <div class="mb-3">
                 <label for="year_of_development" class="form-label">{{ __('Year of development') }}</label>
-                <input type="text" class="form-control @error('year_of_development') is-invalid @enderror"
+                <input type="text" class="form-control rounded-0 @error('year_of_development') is-invalid @enderror"
                     name="year_of_development" id="year_of_development" aria-describedby="yearHelpId"
                     value="{{ old('year_of_development', $project->year_of_development) }}">
                 <small id="yearHelpId" class="form-text text-muted">{{ __('Set the year of development') }}</small>
             </div>
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-dark" role="button">
+            <a href="{{ route('admin.projects.index') }}" class="rounded-0 btn btn-outline-dark" role="button">
                 <i class="fa-solid fa-arrow-left me-1"></i>
                 {{ __('Back') }}
             </a>
-            <button type="reset" class="btn btn-outline-secondary">
+            <button type="reset" class="rounded-0 btn btn-outline-secondary">
                 {{ __('Reset') }}
             </button>
-            <button type="submit" class="btn btn-outline-primary px-5">
+            <button type="submit" class="rounded-0 btn btn-outline-primary px-5">
                 <i class="fa-solid fa-pencil me-1"></i>
                 {{ __('Edit') }}
             </button>

@@ -22,9 +22,9 @@
                 <form action="{{ route('admin.technologies.store') }}" method="post">
                     @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                        <input type="text" class="form-control rounded-0 @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="Vue 9.x" value="{{ old('name') }}">
-                        <button type="submit" class="btn btn-outline-dark">
+                        <button type="submit" class="rounded-0 btn btn-outline-dark">
                             <i class="fa-solid fa-plus me-1"></i>
                             {{ __('New Technology') }}
                         </button>
@@ -45,39 +45,39 @@
                         <th class="">{{ __('Name') }}</th>
                         <th class="">{{ __('Slug') }}</th>
                         <th class="text-center">{{ __('Linked Projects') }}</th>
-                        <th class="text-center">{{ __('Actions') }}</th>
+                        <th class="text-end border-0">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     @forelse ($technologies as $technology)
                         <tr class="">
-                            <td class="ms-w-5" scope="row">{{ $technology->id }}</td>
-                            <td class="ms-overflow-x-hidden ms-w-20">{{ $technology->name }}</td>
-                            <td class="ms-overflow-x-hidden">{{ $technology->slug }}</td>
+                            <td class="" scope="row">{{ $technology->id }}</td>
+                            <td class="">{{ $technology->name }}</td>
+                            <td class="">{{ $technology->slug }}</td>
                             <td class="text-center">{{ $technology->projects->count() }}</td>
-                            <td class="">
-                                <div class="d-flex align-items-center gap-2">
+                            <td class="d-flex justify-content-end">
+                                <div class="d-flex flex-column flex-lg-row align-items-end align-items-lg-center gap-2">
                                     <form action="{{ route('admin.technologies.update', $technology) }}" method="post">
                                         @csrf
                                         @method('PUT')
-                                        <div class="input-group">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        <div class="input-group w-100">
+                                            <input type="text" class="form-control rounded-0 @error('name') is-invalid @enderror"
                                                 name="name" id="name"
                                                 value="{{ old('name'), $technology->name }}">
-                                            <button type="submit" class="btn btn-outline-dark">
+                                            <button type="submit" class="rounded-0 btn btn-outline-dark">
                                                 <i class="fa-solid fa-pencil me-1"></i>
                                                 {{ __('Edit') }}
                                             </button>
                                         </div>
                                     </form>
                                     <a href="{{ route('admin.technologies.show', $technology) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
+                                        class=" rounded-0 btn btn-outline-dark d-flex justify-content-center align-items-center gap-2"
                                         title="{{ __('Show related projects') }}">
                                         <i class="fa-solid fa-eye"></i>
                                         {{__('Show')}}
                                     </a>
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 px-4"
+                                    <button type="button" class="rounded-0 btn btn-outline-danger d-flex justify-content-center align-items-center gap-2 px-4"
                                         data-bs-toggle="modal" data-bs-target="{{ '#modal' . $technology->id }}"
                                         title="{{ __('Delete type') }}">
                                         <i class="fa-solid fa-trash"></i>
@@ -94,7 +94,7 @@
                                                         id="{{ 'modalTitle' . $technology->id }}">
                                                         {{ __('Danger Zone') }}
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    <button type="button" class="rounded-0 btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -102,13 +102,13 @@
                                                     <div class="fw-semibold">{{ __('Are you sure?') }}</div>
                                                 </div>
                                                 <div class="modal-footer d-flex justify-content-between">
-                                                    <button type="button" class="btn btn-outline-dark"
+                                                    <button type="button" class="rounded-0 btn btn-outline-dark"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
                                                     <form action="{{ route('admin.technologies.destroy', $technology) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger">
+                                                        <button type="submit" class="rounded-0 btn btn-outline-danger">
                                                             <i class="fa-solid fa-trash me-1"></i>
                                                             {{ __('Delete permanently') }}
                                                         </button>

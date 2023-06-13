@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex flex-col flex-lg-row justify-content-between align-items-center">
-            <a href="{{ route('admin.types.index') }}" class="btn btn-outline-dark px-5 mt-4" role="button">
+            <a href="{{ route('admin.types.index') }}" class="rounded-0 btn btn-outline-dark px-5 mt-4" role="button">
                 <i class="fa-solid fa-arrow-left me-1"></i>
                 {{ __('Back') }}
             </a>
@@ -15,7 +15,7 @@
                 <div class="col">
                     <div class="card rounded-0 border-dark h-100">
                         <div class="card-header border-0 rounded-0 bg-dark d-flex justify-content-end align-items-center gap-3">
-                            <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-light px-3"
+                            <a href="{{ route('admin.projects.show', $project) }}" class="rounded-0 btn btn-light px-3"
                                 role="button">
                                 <i class="fa-solid fa-eye me-1"></i>
                                 {{ __('More details') }}
@@ -23,8 +23,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center gap-3">
-                                <img src="{{ $project->image }}" height="150" width="150" class=""
-                                    alt="{{ $project->title }}">
+                                <img src="{{ asset('storage/' . $project->image) }}" height="150" width="150" class=""
+                                    alt="{{ $project->title . " cover image" }}">
                                 <div class="card-body d-flex flex-column gap-2">
                                     <div class="d-flex justify-content-between align-items-start w-100">
                                         <strong class="me-3">ID:</strong>

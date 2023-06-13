@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -44,12 +45,19 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $val_data = $request->validated();
-        $val_data['slug'] = Project::generateSlug($val_data['title']); 
+        
+        if ($request->hasFile('image')) {
+            $img_path = Storage::disk('public')->put('uploads', $request->image);
+            //dd($img_path);
+            $val_data['image'] = $img_path;
+        }
+
+        $val_data['slug'] = Project::generateSlug($val_data['title']);
         // dd($val_data);
         // dd($request->technologies);
         $newProject = Project::create($val_data);
 
-        if($request->has('technologies')){
+        if ($request->has('technologies')) {
             $newProject->technologies()->attach($request->technologies);
         }
 
@@ -94,13 +102,23 @@ class ProjectController extends Controller
     {
         // dd($request);
         $val_data = $request->validated();
-        $val_data['slug'] = Project::generateSlug($val_data['title']); 
+        $val_data['slug'] = Project::generateSlug($val_data['title']);
 
+        if ($request->hasFile('image')) {
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
+            
+            $img_path = Storage::put('uploads', $request->image);
+            $val_data['image'] = $img_path;
+        }
+        
         $project->update($val_data);
 
-        if($request->has('technologies')){
+        if ($request->has('technologies')) {
             $project->technologies()->sync($request->technologies);
         }
+
 
         return to_route('admin.projects.index')->with('message', "Project: '" . $val_data['title'] . "' edited with success");
     }

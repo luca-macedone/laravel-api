@@ -23,8 +23,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center gap-3">
-                                <img src="{{ $project->image }}" height="150" width="150" class=""
-                                    alt="{{ $project->title }}">
+                                <img src="{{ asset("storage/$project->image") }}" height="150" width="150" class=""
+                                    alt="{{ $project->title . " cover image" }}">
                                 <div class="card-body d-flex flex-column gap-2">
                                     <div class="d-flex justify-content-between align-items-start w-100">
                                         <strong class="me-3">ID:</strong>

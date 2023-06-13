@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
             $new_project = new Project();
             $new_project->title = $faker->sentence();
             $new_project->slug = Project::generateSlug( $new_project->title );
-            $new_project->image = $faker->imageUrl(500, 400, format:'jpg');
+            $new_project->image = 'placeholders/' . $faker->image(dir: 'storage/app/public/placeholders/', fullPath: false, format:'jpg', gray: true);
             $new_project->description = $faker->paragraph(5);
             $new_project->year_of_development = $faker->year();
             $new_project->repository_url = $faker->url();

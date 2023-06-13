@@ -8,7 +8,7 @@
             <h2 class="fs-4 text-secondary my-4">
                 {{ __('Projects List') }}
             </h2>
-            <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-dark" role="button">
+            <a href="{{ route('admin.projects.create') }}" class="rounded-0 btn btn-outline-dark" role="button">
                 <i class="fa-solid fa-plus me-1"></i>
                 {{ __('New Project') }}
             </a>
@@ -28,7 +28,7 @@
                         <th>{{ __('Type') }}</th>
                         <th>{{ __('Repository URL') }}</th>
                         <th>{{ __('Website URL') }}</th>
-                        <th>{{ __('Actions') }}</th>
+                        <th class="text-end">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -43,17 +43,17 @@
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('admin.projects.show', $project) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-1"
+                                        class="rounded-0 btn px-4 py-3 btn-outline-dark d-flex align-items-center gap-1"
                                         title="{{ __('View') }}">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     <a href="{{ route('admin.projects.edit', $project) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-1"
+                                        class="rounded-0 btn px-4 py-3 btn-outline-dark d-flex align-items-center gap-1"
                                         title="{{ __('Edit') }}">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-1"
+                                    <button type="button" class="rounded-0 btn px-4 py-3 btn-outline-danger d-flex align-items-center gap-1"
                                         data-bs-toggle="modal" data-bs-target="{{ '#modal' . $project->id }}"
                                         title="{{ __('Delete') }}">
                                         <i class="fa-solid fa-trash"></i>
@@ -63,12 +63,12 @@
                                         aria-labelledby="{{ 'modalTitle' . $project->id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                             role="document">
-                                            <div class="modal-content">
+                                            <div class="modal-content rounded-0">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-danger"
                                                         id="{{ 'modalTitle' . $project->id }}">{{ __('Danger Zone') }}
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    <button type="button" class="btn-close rounded-0" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -76,13 +76,13 @@
                                                     <div class="fw-semibold">{{ __("Are you sure?") }}</div>
                                                 </div>
                                                 <div class="modal-footer d-flex justify-content-between">
-                                                    <button type="button" class="btn btn-outline-dark"
+                                                    <button type="button" class="rounded-0 btn btn-outline-dark"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
                                                     <form action="{{ route('admin.projects.destroy', $project) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger">
+                                                        <button type="submit" class="rounded-0 btn btn-outline-danger">
                                                             <i class="fa-solid fa-trash me-1"></i>
                                                             {{ __('Delete permanently') }}
                                                         </button>

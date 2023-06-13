@@ -22,9 +22,9 @@
                 <form action="{{ route('admin.types.store') }}" method="post">
                     @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                        <input type="text" class="form-control rounded-0 @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="WebOps" value="{{ old('name') }}">
-                        <button type="submit" class="btn btn-outline-dark">
+                        <button type="submit" class="btn rounded-0 btn-outline-dark">
                             <i class="fa-solid fa-plus me-1"></i>
                             {{ __('New Type') }}
                         </button>
@@ -45,39 +45,39 @@
                         <th class="">{{ __('Name') }}</th>
                         <th class="">{{ __('Slug') }}</th>
                         <th class="text-center">{{ __('Linked Projects') }}</th>
-                        <th class="text-center">{{ __('Actions') }}</th>
+                        <th class="text-end">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     @forelse ($types as $type)
                         <tr class="">
-                            <td class="ms-w-5" scope="row">{{ $type->id }}</td>
-                            <td class="ms-overflow-x-hidden ms-w-20">{{ $type->name }}</td>
-                            <td class="ms-overflow-x-hidden">{{ $type->slug }}</td>
+                            <td class="" scope="row">{{ $type->id }}</td>
+                            <td class="">{{ $type->name }}</td>
+                            <td class="">{{ $type->slug }}</td>
                             <td class="text-center">{{ $type->projects->count() }}</td>
-                            <td class="">
+                            <td class="d-flex justify-content-end">
                                 <div class="d-flex align-items-center gap-2">
                                     <form action="{{ route('admin.types.update', $type) }}" method="post">
                                         @csrf
                                         @method('PUT')
                                         <div class="input-group">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            <input type="text" class="form-control rounded-0 @error('name') is-invalid @enderror"
                                                 name="name" id="name"
                                                 value="{{ old('name'), $type->name }}">
-                                            <button type="submit" class="btn btn-outline-dark">
+                                            <button type="submit" class="btn rounded-0 btn-outline-dark">
                                                 <i class="fa-solid fa-pencil me-1"></i>
                                                 {{ __('Edit') }}
                                             </button>
                                         </div>
                                     </form>
                                     <a href="{{ route('admin.types.show', $type) }}"
-                                        class="btn btn-outline-dark d-flex align-items-center gap-2"
+                                        class="btn rounded-0 btn-outline-dark d-flex align-items-center gap-2"
                                         title="{{ __('Show related projects') }}">
                                         <i class="fa-solid fa-eye"></i>
                                         {{__('Show')}}
                                     </a>
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2 px-4"
+                                    <button type="button" class="btn rounded-0 btn-outline-danger d-flex align-items-center gap-2 px-4"
                                         data-bs-toggle="modal" data-bs-target="{{ '#modal' . $type->id }}"
                                         title="{{ __('Delete type') }}">
                                         <i class="fa-solid fa-trash"></i>
@@ -94,7 +94,7 @@
                                                         id="{{ 'modalTitle' . $type->id }}">
                                                         {{ __('Danger Zone') }}
                                                     </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    <button type="button" class="btn rounded-0 btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -102,13 +102,13 @@
                                                     <div class="fw-semibold">{{ __('Are you sure?') }}</div>
                                                 </div>
                                                 <div class="modal-footer d-flex justify-content-between">
-                                                    <button type="button" class="btn btn-outline-dark"
+                                                    <button type="button" class="btn rounded-0 btn-outline-dark"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
                                                     <form action="{{ route('admin.types.destroy', $type) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger">
+                                                        <button type="submit" class="btn rounded-0 btn-outline-danger">
                                                             <i class="fa-solid fa-trash me-1"></i>
                                                             {{ __('Delete permanently') }}
                                                         </button>

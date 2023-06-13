@@ -12,15 +12,15 @@
                 <div class="card rounded-0 border-dark h-100">
                     <div class="card-header border-0 rounded-0 bg-dark d-flex justify-content-end align-items-center gap-3">
 
-                        <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-light px-5" role="button">
+                        <a href="{{ route('admin.projects.index') }}" class="rounded-0 btn btn-outline-light px-5" role="button">
                             <i class="fa-solid fa-arrow-left me-1"></i>
                             Back
                         </a>
-                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-outline-light px-5">
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="rounded-0 btn btn-outline-light px-5">
                             <i class="fa-solid fa-pencil me-1"></i>
                             Edit
                         </a>
-                        <button type="button" class="btn btn-outline-danger px-3" data-bs-toggle="modal"
+                        <button type="button" class="rounded-0 btn btn-outline-danger px-3" data-bs-toggle="modal"
                             data-bs-target="{{ '#modal' . $project->id }}">
                             <i class="fa-solid fa-trash me-1"></i>
                             Delete project
@@ -57,8 +57,8 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex align-items-center gap-3">
-                            <img src="{{ $project->image }}" height="150" width="150" class=""
-                                alt="{{ $project->title }}">
+                            <img src="{{ asset("storage/". $project->image) }}" height="150" width="150" class=""
+                                alt="{{ $project->title . " cover image" }}">
                             <div class="card-body d-flex flex-column gap-2">
                                 <div class="d-flex justify-content-between align-items-start w-100">
                                     <strong class="me-3">ID:</strong>
