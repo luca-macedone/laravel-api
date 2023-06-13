@@ -8,8 +8,8 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -20,7 +20,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderByDesc('year_of_development')->get();
+        $projects = Auth::user()->projects()->orderByDesc('id')->paginate(6);
+
+        // $projects = Project::orderByDesc('year_of_development')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -53,6 +55,10 @@ class ProjectController extends Controller
         }
 
         $val_data['slug'] = Project::generateSlug($val_data['title']);
+
+        // Add user_id to val_data
+        $val_data['user_id'] = Auth::id();
+
         // dd($val_data);
         // dd($request->technologies);
         $newProject = Project::create($val_data);
@@ -88,7 +94,11 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact(['project', 'types', 'technologies']));
+
+        if (Auth::id() === $project->user_id) {
+            return view('admin.projects.edit', compact(['project', 'types', 'technologies']));
+        }
+        abort(403);
     }
 
     /**
