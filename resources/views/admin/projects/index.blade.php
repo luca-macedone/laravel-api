@@ -40,7 +40,7 @@
                             <td>{{ $project->type?->name }}</td>
                             <td>{{ $project->repository_url }}</td>
                             <td>{{ $project->website_url }}</td>
-                            <td>
+                            <td class="d-flex justify-content-end gap-3">
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('admin.projects.show', $project) }}"
                                         class="rounded-0 btn px-4 py-3 btn-outline-dark d-flex align-items-center gap-1"
@@ -103,6 +103,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @endforelse
 
@@ -111,6 +113,7 @@
 
                 </tfoot>
             </table>
+            {{$projects->links('pagination::bootstrap-5')}}
         </div>
 
     </div>
