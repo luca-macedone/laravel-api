@@ -10,7 +10,7 @@ class ProjectController extends Controller
 {
     public function index(){
 
-        $projects = Project::with(['tecnologies', 'type', 'user'])->orderByDesc('id')->paginate(8);
+        $projects = Project::with(['technologies', 'type', 'user'])->orderByDesc('id')->paginate(8);
         
         if(count($projects) > 0){
             // if the db have something returns it
