@@ -46,4 +46,25 @@ class ProjectController extends Controller
 
         }
     }
+
+    public function latest()
+    {
+        $projects = Project::with(['technologies', 'type', 'user'])->orderByDesc('id')->take(3)->get();
+
+        if (count($projects) > 0) {
+            // if the db have something returns it
+            return response()->json([
+                'status' => true,
+                'projects' => $projects,
+            ]);
+
+        } else {
+            // if the db is empty return false
+            return response()->json([
+                'status' => false,
+                'projects' => null,
+            ]);
+
+        }
+    }
 }
