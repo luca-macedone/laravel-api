@@ -92,11 +92,17 @@
                     aria-describedby="websiteHelpId" placeholder="Type the URL here">
                 {{-- <small id="websiteHelpId" class="form-text text-muted">{{ __('Required') }}</small> --}}
             </div>
-            {{-- description --}}
+            {{-- description_en --}}
             <div class="mb-3">
-                <label for="description" class="form-label">{{ __('Description') }}</label>
-                <textarea class="form-control rounded-0 @error('description') is-invalid @enderror" name="description" id="description"
-                    rows="5">{{ old('description', $project->description) }}</textarea>
+                <label for="description_en" class="form-label">{{ __('Description in english') }}</label>
+                <textarea class="form-control rounded-0 @error('description_en') is-invalid @enderror" name="description_en" id="description_en"
+                    rows="5">{{ old('description_en', $project->description_en) }}</textarea>
+            </div>
+            {{-- description_it --}}
+            <div class="mb-3">
+                <label for="description_it" class="form-label">{{ __('Description in italian') }}</label>
+                <textarea class="form-control rounded-0 @error('description_it') is-invalid @enderror" name="description_it" id="description_it"
+                    rows="5">{{ old('description_it', $project->description_it) }}</textarea>
             </div>
             {{-- year --}}
             <div class="mb-3">

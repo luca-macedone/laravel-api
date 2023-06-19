@@ -14,16 +14,16 @@
 
                         <a href="{{ route('admin.projects.index') }}" class="rounded-0 btn btn-outline-light px-5" role="button">
                             <i class="fa-solid fa-arrow-left me-1"></i>
-                            Back
+                            {{__('Back')}}
                         </a>
                         <a href="{{ route('admin.projects.edit', $project) }}" class="rounded-0 btn btn-outline-light px-5">
                             <i class="fa-solid fa-pencil me-1"></i>
-                            Edit
+                            {{__('Edit')}}
                         </a>
                         <button type="button" class="rounded-0 btn btn-outline-danger px-3" data-bs-toggle="modal"
                             data-bs-target="{{ '#modal' . $project->id }}">
                             <i class="fa-solid fa-trash me-1"></i>
-                            Delete project
+                            {{__('Delete project')}}
                         </button>
                         <div class="modal fade" id="{{ 'modal' . $project->id }}" tabindex="-1" data-bs-backdrop="static"
                             data-bs-keyboard="false" role="dialog" aria-labelledby="{{ 'modalTitle' . $project->id }}"
@@ -32,13 +32,12 @@
                                 role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-danger" id="{{ 'modalTitle' . $project->id }}">Danger
-                                            Zone</h5>
+                                        <h5 class="modal-title text-danger" id="{{ 'modalTitle' . $project->id }}">{{__('Danger Zone')}}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        This operation is irreversible, are you sure?
+                                        {{__('This operation is irreversible, are you sure?')}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-dark"
@@ -46,8 +45,7 @@
                                         <form action="{{ route('admin.projects.destroy', $project) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">Delete
-                                                permanently</button>
+                                            <button type="submit" class="btn btn-outline-danger">{{__('Delete permanently')}}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -97,9 +95,16 @@
                                 </div>
                                 <div
                                     class="d-flex justify-content-between align-items-start w-100">
-                                    <strong class="me-3">Description:</strong>
+                                    <strong class="me-3">Description [EN]:</strong>
                                     <p class="text-end">
-                                        {{ $project->description }}
+                                        {{ $project->description_en }}
+                                    </p>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-start w-100">
+                                    <strong class="me-3">Description [IT]:</strong>
+                                    <p class="text-end">
+                                        {{ $project->description_it }}
                                     </p>
                                 </div>
                                 
